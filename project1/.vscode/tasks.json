@@ -1,0 +1,65 @@
+{
+    "tasks": [
+        {
+            "label": "compile-InstructionList",
+            "type": "shell",
+            "command": "/usr/bin/clang++",
+            "args": [
+                "-std=c++14",
+                "-stdlib=libc++",
+                "-g",
+                "-Wall",
+                "-c",
+                "InstructionList.cpp",
+                "-o",
+                "InstructionList.o"
+            ],
+
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+
+        },
+
+        {
+            "label": "compile-hilbert",
+            "type": "shell",
+            "command": "/usr/bin/clang++",
+            "args": [
+                "-std=c++14",
+                "-stdlib=libc++",
+                "-g",
+                "-Wall",
+                "-c",
+                "hilbert-driver.cpp",
+                "-o",
+                "hilbert-driver.o"
+            ],
+
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+            
+        },
+
+        {
+            "label": "linker",
+            "type": "shell",
+            "command": "/usr/bin/clang++",
+            "args": [
+                "hilbert-driver.o",
+                "InstructionList.o",
+                "-o",
+                "oanh"
+            ],
+
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+
+            "dependsOn": ["compile-instruction_list", "compile-hilbert"]
+
+        }
+    ],
+    "version": "2.0.0"
+}
